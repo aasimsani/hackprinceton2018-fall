@@ -110,3 +110,5 @@ venv.bak/
 
 
 stdlib/
+
+.json

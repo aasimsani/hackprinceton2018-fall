@@ -1,0 +1,24 @@
+{
+    "totalDuration": 60,
+    "speakerNames":["A","B"],
+
+    "sentimentData":[
+        {
+            "speaker":"A",
+            "sentence":"This is what A said",
+            "sentiment":1,
+            "from":2,
+            "to":20
+
+        },
+        {
+        "speaker":B,
+        "sentence":"This is what A said",
+        "sentiment":2,
+        "from":22,
+        "to":35
+
+        }
+    ]
+
+}

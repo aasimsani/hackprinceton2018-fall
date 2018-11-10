@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Simple Recorder.js demo with record, stop and pause</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ </head>
+ <body>
+  <div id="controls">
+   <button id="recordButton">Record</button>
+   <button id="pauseButton" disabled>Pause</button>
+   <button id="stopButton" disabled>Stop</button>
+  </div>
+  <h3>Recordings</h3>
+  <ol id="recordingsList"></ol>
+  <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+  <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+
+
+  <script>
+  
+  //webkitURL is deprecated but nevertheless
+URL = window.URL || window.webkitURL;
+ 
+var gumStream; //stream from getUserMedia()
+var rec; //Recorder.js object
+var input; //MediaStreamAudioSourceNode we'll be recording
+ 
+// shim for AudioContext when it's not avb. 
+var AudioContext = window.AudioContext || window.webkitAudioContext;
+var audioContext = new AudioContext; //new audio context to help us record
+ 
+var recordButton = document.getElementById("recordButton");
+var stopButton = document.getElementById("stopButton");
+var pauseButton = document.getElementById("pauseButton"); 
+ 
+//add events to those 3 buttons
+recordButton.addEventListener("click", startRecording);
+stopButton.addEventListener("click", stopRecording);
+pauseButton.addEventListener("click", pauseRecording);
+  </script>
+
+ </body>
+</html>

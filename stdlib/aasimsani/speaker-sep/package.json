@@ -1,0 +1,14 @@
+{
+  "name": "aasimsani/speaker-sep",
+  "version": "0.0.0",
+  "author": "aasimsani",
+  "stdlib": {
+    "name": "aasimsani/speaker-sep",
+    "timeout": 10000
+  },
+  "dependencies": {
+    "@google-cloud/speech": "^2.1.1",
+    "formidable": "^1.2.1",
+    "wav": "^1.0.2"
+  }
+}

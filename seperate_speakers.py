@@ -57,9 +57,11 @@ def master(gcs_uri):
 
         if previous_tag == data.speaker_tag:
             current_sentence.append(data.word)
+            sentence_end = data.end_time.seconds + (data.end_time.nanos/100000000)
         else:
-            sentence_end = data.start_time.seconds + (data.start_time.nanos/1000000)
-            sentence_start = data.start_time.seconds + (data.start_time.nanos/1000000)
+
+            sentence_start = data.start_time.seconds + (data.start_time.nanos/100000000)
+            sentence_end = data.start_time.seconds + (data.start_time.nanos/100000000)
             speakers[data.speaker_tag].append({"sentence":current_sentence,"start":sentence_start,"end":sentence_end})
             current_sentence = []
             current_sentence.append(data.word)
@@ -128,7 +130,22 @@ def master(gcs_uri):
         sentence = ' '.join(data['sentence'])
         try:
             sentiment = float(analyze(sentence))
-            data['sentiment'] = sentiment
+
+            if sentiment > 0.6:
+                sentiment_enc = 2
+            elif sentiment <=0.6 and sentiment > 0.2:
+                sentiment_enc = 1
+            elif sentiment <= 0.2 and sentiment > -0.2:
+                sentiment_enc = 0
+            elif sentiment <= -0.2 and sentiment > -0.6:
+                sentiment_enc = -1
+            elif sentiment <= -0.6:
+                sentiment_enc = -2
+            else:
+                sentiment_enc = 5
+
+
+            data['sentiment'] = sentiment_enc
             speaker_sentiment[1].append(data)
 
         except:
@@ -140,7 +157,21 @@ def master(gcs_uri):
         sentence = ' '.join(data['sentence'])
         try:
             sentiment = float(analyze(sentence))
-            data['sentiment'] = sentiment
+
+            if sentiment > 0.6:
+                sentiment_enc = 2
+            elif sentiment <=0.6 and sentiment > 0.2:
+                sentiment_enc = 1
+            elif sentiment <= 0.2 and sentiment > -0.2:
+                sentiment_enc = 0
+            elif sentiment <= -0.2 and sentiment > -0.6:
+                sentiment_enc = -1
+            elif sentiment <= -0.6:
+                sentiment_enc = 2
+            else:
+                sentiment_enc = 5
+
+            data['sentiment'] = sentiment_enc
             speaker_sentiment[2].append(data)
         except:
             pass

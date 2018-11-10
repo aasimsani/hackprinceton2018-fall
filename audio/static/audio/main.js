@@ -31,7 +31,6 @@ var socketio = io.connect(location.origin + '/audio', {transports: ['websocket']
 socketio.on('speech_data', function(json) {
     // add new recording to page
 
-    X(json)
     audio = document.createElement('p');
     console.log(json)
     for (var key in json)

@@ -17,7 +17,7 @@ config = speech.types.RecognitionConfig(
     sample_rate_hertz=8000,
     language_code='en-US',
     enable_speaker_diarization=True,
-    diarization_speaker_count=2)
+    diarization_speaker_count=2)K
 
 
 

@@ -60,9 +60,9 @@ def master(gcs_uri):
             sentence_end = data.end_time.seconds + (data.end_time.nanos/100000000)
         else:
 
+            speakers[previous_tag].append({"sentence":current_sentence,"start":sentence_start,"end":sentence_end})
             sentence_start = data.start_time.seconds + (data.start_time.nanos/100000000)
-            sentence_end = data.start_time.seconds + (data.start_time.nanos/100000000)
-            speakers[data.speaker_tag].append({"sentence":current_sentence,"start":sentence_start,"end":sentence_end})
+            sentence_end = data.end_time.seconds + (data.end_time.nanos/100000000)
             current_sentence = []
             current_sentence.append(data.word)
             previous_tag = data.speaker_tag
@@ -70,6 +70,7 @@ def master(gcs_uri):
 
     speakers[previous_tag].append({"sentence":current_sentence,"start":sentence_start,"end":sentence_end})
 
+    last_tag = sentence_end
 
 
 
@@ -128,8 +129,14 @@ def master(gcs_uri):
     for data in speakers[1]:
 
         sentence = ' '.join(data['sentence'])
-        try:
-            sentiment = float(analyze(sentence))
+
+        raw_data = analyze(sentence)
+
+        if isinstance(raw_data,type(None)):
+            sentiment = None
+            sentiment_enc = 5
+        else:
+            sentiment = float()
 
             if sentiment > 0.6:
                 sentiment_enc = 2
@@ -144,19 +151,27 @@ def master(gcs_uri):
             else:
                 sentiment_enc = 5
 
+        store = data['start'] 
+        if data['end'] < data['start']:
+            data['start'] = data['end']
+            data['end'] = store
 
-            data['sentiment'] = sentiment_enc
-            speaker_sentiment[1].append(data)
-
-        except:
-            pass
+        data['duration'] = data['end'] - data['start']
+        data['sentiment'] = sentiment_enc
+        speaker_sentiment[1].append(data)
 
 
     for data in speakers[2]:
 
         sentence = ' '.join(data['sentence'])
-        try:
-            sentiment = float(analyze(sentence))
+
+        raw_data = analyze(sentence)
+
+        if isinstance(raw_data,type(None)):
+            sentiment = None
+            sentiment_enc = 5
+        else:
+            sentiment = float(raw_data)
 
             if sentiment > 0.6:
                 sentiment_enc = 2
@@ -171,14 +186,20 @@ def master(gcs_uri):
             else:
                 sentiment_enc = 5
 
-            data['sentiment'] = sentiment_enc
-            speaker_sentiment[2].append(data)
-        except:
-            pass
+        store = data['start'] 
+        if data['end'] < data['start']:
+            data['start'] = data['end']
+            data['end'] = store
+
+        data['duration'] = data['end'] - data['start']
+        data['sentiment'] = sentiment_enc
+        speaker_sentiment[2].append(data)
         
 
 
     print("Completed action!")
 
-    return speaker_sentiment
+    speaker_sentiment_data = {"total_duration":last_tag,"segments":speaker_sentiment}
+
+    return speaker_sentiment_data 
 # master("gs://hackpton-bucket/0a65a15c881849beb865947b54c865ac.wav")

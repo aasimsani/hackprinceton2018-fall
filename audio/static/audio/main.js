@@ -65,11 +65,18 @@ socketio.on('speech_data', function(json) {
         document.getElementById('wavefiles').appendChild(tr);
     }
 
+    tr = document.createElement('br');
+    document.getElementById('wavefiles').appendChild(tr);
+    tr = document.createElement('br');
+    document.getElementById('wavefiles').appendChild(tr);
+    tr = document.createElement('br');
+    document.getElementById('wavefiles').appendChild(tr);
+
     for (var data in json['segments'][2]) {
-        var duration = json['segments'][1][data]["duration"];
+        var duration = json['segments'][2][data]["duration"];
         var percent = (duration / totalDuration) * 100;
         var toRender = "";
-        var sentiment = json['segments'][1][data]['sentiment'];
+        var sentiment = json['segments'][2][data]['sentiment'];
         var emotionScalar = "";
 
         if (sentiment == -2) {
@@ -86,7 +93,7 @@ socketio.on('speech_data', function(json) {
             emotionScalar = "neutral";
         }
         
-        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%">\n dummy text';
+        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%">dummy text';
         tr = document.createElement('div')
         tr.innerHTML = toRender;
         document.getElementById('wavefiles').appendChild(tr);

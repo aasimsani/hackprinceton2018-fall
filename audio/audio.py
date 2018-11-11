@@ -70,6 +70,6 @@ def end_recording():
                             filename='_files/' + session['wavename']))
     session['wavefile'].close()
 
-    emit('speech_data',[{}])
+    emit('speech_data',json_data)
 
 

@@ -47,7 +47,7 @@ socketio.on('speech_data', function(json) {
     for (var data in json['segments'][1]) {
         var duration = json['segments'][1][data]["duration"];
         var percent = Math.round((duration/totalDuration) * 100);
-            percent = Math.round(percent/1.10);
+            percent = Math.round(percent/1.20);
         var toRender = "";
         var sentiment = json['segments'][1][data]['sentiment'];
         var emotionScalar = "";
@@ -82,7 +82,7 @@ socketio.on('speech_data', function(json) {
     for (var data in json['segments'][2]) {
         var duration = json['segments'][2][data]["duration"];
         var percent = Math.round((duration /totalDuration) * 100);
-            percent = Math.round(percent/1.10);
+            percent = Math.round(percent/1.40);
         var toRender = "";
         var sentiment = json['segments'][2][data]['sentiment'];
         var emotionScalar = "";

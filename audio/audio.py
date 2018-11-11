@@ -62,9 +62,7 @@ def end_recording():
     session['wavefile'].close()
     upload_blob(bucket_name,current_app.config['FILEDIR'] + session['wavename'],session['wavename'])
 #     json_data = master("gs://hackpton-bucket/"+session['wavename'])
-
-    json_data = {'total_duration': 20.0, 'segments': {1: [{'sentence': [], 'start': 0.0, 'end': 0.0, 'duration': 0.0, 'sentiment':5}], 2: [{'sentence': ['Pretty', 'as', 'well.', 'I', 'need', 'some', 'gas', 'money.'], 'start': 0.0, 'end': 20.0, 'duration': 20.0, 'sentiment': 2}]}}
-
+    json_data = {'total_duration': 32.0, 'segments': {1: [{'sentence': ['I', 'want', 'to', 'do', 'is', 'yeah,', "I'm", 'going', 'to', 'speed', 'right', 'now', 'at', 'right', 'now.', "Nobody's", 'going', 'to', 'look', 'at', 'me.', 'Look', 'at', 'me', 'weird', 'upstairs'], 'start': 0.0, 'end': 11.0, 'duration': 11.0, 'sentiment': 0}, {'sentence': ['have', 'like', 'two', 'people', 'with', 'very', 'different', 'voices.'], 'start': 18.0, 'end': 32.0, 'duration': 14.0, 'sentiment': 0}], 2: [{'sentence': ['to', 'you.', 'Can', 'you'], 'start': 11.0, 'end': 18.0, 'duration': 7.0, 'sentiment': 0}]}}
     print(json_data)
 
 

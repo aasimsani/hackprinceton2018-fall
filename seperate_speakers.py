@@ -136,21 +136,18 @@ def master(gcs_uri):
             sentiment = None
             sentiment_enc = 5
         else:
-            sentiment = float()
+            sentiment = float(raw_data)
 
-            if sentiment > 0.6:
+            if sentiment > 0.3:
                 sentiment_enc = 2
-            elif sentiment <=0.6 and sentiment > 0.2:
-                sentiment_enc = 1
-            elif sentiment <= 0.2 and sentiment > -0.2:
+            elif sentiment <=0.3 and sentiment > -0.3:
                 sentiment_enc = 0
-            elif sentiment <= -0.2 and sentiment > -0.6:
-                sentiment_enc = -1
-            elif sentiment <= -0.6:
-                sentiment_enc = -2
+            elif sentiment <= -0.3:
+               sentiment_enc = -2
             else:
                 sentiment_enc = 5
 
+        print(sentiment)
         store = data['start'] 
         if data['end'] < data['start']:
             data['start'] = data['end']

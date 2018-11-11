@@ -32,60 +32,40 @@ socketio.on('speech_data', function(json) {
     // add new recording to page
 
     audio = document.createElement('p');
-    console.log(JSON.stringify(json,null,2))
+    console.log(JSON.stringify(json,null,2));
 
-    var totalDuration = json['total_duration']
+    var totalDuration = json['total_duration'];
 
-    var toRender = ""
+    var toRender = "";
 
-    for (var data in json['segments'][1])
-    {
-
-        var duration = json['segments'][1][data]["duration"]
-
-        var percent = duration/totalDuration
-
-        var toRender = ""
-
-        var sentiment = json['segments'][1][data]['sentiment']
-
-
+    for (var data in json['segments'][1]) {
+        var duration = json['segments'][1][data]["duration"];
+        var percent = duration / totalDuration * 100;
+        var toRender = "";
+        var sentiment = json['segments'][1][data]['sentiment'];
         var emotionScalar = "";
+
         if (sentiment == -2) {
-            emotionScalar = "most-negative"
+            emotionScalar = "most-negative";
         } else if (sentiment == -1) {
-            emotionScalar = "less-negative"
+            emotionScalar = "less-negative";
         } else if (sentiment == 0) {
-            emotionScalar = "neutral"
+            emotionScalar = "neutral";
         } else if (sentiment == 1) {
-            emotionScalar = "less-positive"
+            emotionScalar = "less-positive";
         } else if (sentiment == 2) {
-            emotionScalar = "most-negative"
-        }
-        else{
-            emotionScalar = "neutral"
+            emotionScalar = "most-negative";
+        } else {
+            emotionScalar = "neutral";
         }
 
-        console.log(emotionScalar)
+        console.log(emotionScalar);
         
-        
-        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%" />';
-
+        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%"';
         tr = document.createElement('div')
-
         tr.innerHTML = toRender;
-
-
         document.getElementById('wavefiles').appendChild(tr);
-    
-    
     }
-
-
-
-  
-
-
 });
 
 socketio.on('add-wavefile', function(url) {
@@ -94,8 +74,6 @@ socketio.on('add-wavefile', function(url) {
     audio.innerHTML = '<audio src="' + url + '" controls>';
     document.getElementById('wavefiles').appendChild(audio);
 });
-
-
 
 function toggleRecording( e ) {
     if (e.classList.contains('recording')) {

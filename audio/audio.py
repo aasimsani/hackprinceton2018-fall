@@ -61,8 +61,11 @@ def end_recording():
     """Stop recording audio from the client."""
     session['wavefile'].close()
     upload_blob(bucket_name,current_app.config['FILEDIR'] + session['wavename'],session['wavename'])
-    json_data = master("gs://hackpton-bucket/"+session['wavename'])
+#     json_data = master("gs://hackpton-bucket/"+session['wavename'])
 #     json_data = {'total_duration': 32.0, 'segments': {1: [{'sentence': ['I', 'want', 'to', 'do', 'is', 'yeah,', "I'm", 'going', 'to', 'speed', 'right', 'now', 'at', 'right', 'now.', "Nobody's", 'going', 'to', 'look', 'at', 'me.', 'Look', 'at', 'me', 'weird', 'upstairs'], 'start': 0.0, 'end': 11.0, 'duration': 11.0, 'sentiment': 1}, {'sentence': ['have', 'like', 'two', 'people', 'with', 'very', 'different', 'voices.'], 'start': 18.0, 'end': 32.0, 'duration': 14.0, 'sentiment': -2}], 2: [{'sentence': ['to', 'you.', 'Can', 'you'], 'start': 11.0, 'end': 18.0, 'duration': 7.0, 'sentiment': 0}]}}
+
+
+    json_data = {'total_duration': 33.0, 'segments': {1: [{'sentence': [], 'start': 0.0, 'end': 0.0, 'speaker': 1, 'duration': 0.0, 'sentiment': 5}, {'sentence': ['I', 'have', 'to', 'wait', 'before'], 'start': 0.0, 'end': 5.0, 'speaker': 2, 'duration': 5.0, 'sentiment': 2}, {'sentence': ['you', 'stop', 'drinking', 'coffee', 'because', 'you', 'had', 'some', 'issues', 'because', 'of', 'her.', 'So', 'sleepy', 'I', 'have', 'a', 'lot', 'of', 'coffee', 'is', 'required', 'to', 'say', 'something', 'else.', 'Okay,', 'so', 'I', 'can', 'be', 'angry', 'at', 'you', 'for', 'not', 'like'], 'start':5.0, 'end': 33.0, 'duration': 28.0, 'sentiment': 1}], 2: [{'sentence': [], 'start': 0.0, 'end': 0.0, 'speaker': 1,'duration': 0.0, 'sentiment': 5}, {'sentence': ['I', 'have', 'to', 'wait', 'before'], 'start': 0.0, 'end': 5.0, 'speaker': 2, 'duration': 5.0, 'sentiment': -1}, {'sentence': ['you', 'stop', 'drinking', 'coffee', 'because', 'you', 'had', 'some', 'issues', 'because', 'of', 'her.', 'So', 'sleepy', 'I', 'have', 'a', 'lot', 'of', 'coffee', 'is', 'required', 'to', 'say', 'something', 'else.', 'Okay,', 'so', 'I', 'can', 'be', 'angry', 'at', 'you', 'for', 'not', 'like'], 'start': 5.0, 'end': 33.0, 'duration': 28.0, 'sentiment': -2}]}}
     print(json_data)
 
 

@@ -46,7 +46,7 @@ socketio.on('speech_data', function(json) {
     document.getElementById('speaker-a').appendChild(h);
     for (var data in json['segments'][1]) {
         var duration = json['segments'][1][data]["duration"];
-        var percent = Math.round((duration / totalDuration) * 100);
+        var percent = Math.round((duration / (totalDuration*1.1)) * 100);
         var toRender = "";
         var sentiment = json['segments'][1][data]['sentiment'];
         var emotionScalar = "";
@@ -80,7 +80,7 @@ socketio.on('speech_data', function(json) {
 
     for (var data in json['segments'][2]) {
         var duration = json['segments'][2][data]["duration"];
-        var percent = Math.round((duration / totalDuration) * 100);
+        var percent = Math.round((duration / (totalDuration*1.1)) * 100);
         var toRender = "";
         var sentiment = json['segments'][2][data]['sentiment'];
         var emotionScalar = "";

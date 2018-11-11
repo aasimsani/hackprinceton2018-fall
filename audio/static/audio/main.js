@@ -40,7 +40,7 @@ socketio.on('speech_data', function(json) {
 
     for (var data in json['segments'][1]) {
         var duration = json['segments'][1][data]["duration"];
-        var percent = duration / totalDuration * 100;
+        var percent = (duration / totalDuration) * 100;
         var toRender = "";
         var sentiment = json['segments'][1][data]['sentiment'];
         var emotionScalar = "";
@@ -61,7 +61,7 @@ socketio.on('speech_data', function(json) {
 
         console.log(emotionScalar);
         
-        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%"\n a';
+        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%">\n a />';
         tr = document.createElement('div')
         tr.innerHTML = toRender;
         document.getElementById('wavefiles').appendChild(tr);

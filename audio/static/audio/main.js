@@ -93,7 +93,7 @@ socketio.on('speech_data', function(json) {
             emotionScalar = "neutral";
         }
         
-        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%">dummy text';
+        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%">';
         tr = document.createElement('div')
         tr.innerHTML = toRender;
         document.getElementById('wavefiles').appendChild(tr);

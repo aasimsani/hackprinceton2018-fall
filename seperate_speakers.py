@@ -44,7 +44,7 @@ def master(gcs_uri):
     raw_transcript = transcribe_gcs(gcs_uri)
 
 
-    speakers = {1:[],2:[]}
+    speakers = [] 
 
     current_sentence = []
 
@@ -60,7 +60,7 @@ def master(gcs_uri):
             sentence_end = data.end_time.seconds + (data.end_time.nanos/100000000)
         else:
 
-            speakers[previous_tag].append({"sentence":current_sentence,"start":sentence_start,"end":sentence_end})
+            speakers.append({"sentence":current_sentence,"start":sentence_start,"end":sentence_end,"speaker":previous_tag})
             sentence_start = data.start_time.seconds + (data.start_time.nanos/100000000)
             sentence_end = data.end_time.seconds + (data.end_time.nanos/100000000)
             current_sentence = []
@@ -68,7 +68,7 @@ def master(gcs_uri):
             previous_tag = data.speaker_tag
 
 
-    speakers[previous_tag].append({"sentence":current_sentence,"start":sentence_start,"end":sentence_end})
+    speakers.append({"sentence":current_sentence,"start":sentence_start,"end":sentence_end})
 
     last_tag = sentence_end
 
@@ -126,7 +126,7 @@ def master(gcs_uri):
     speaker_sentiment = {1:[],2:[]}
 
 
-    for data in speakers[1]:
+    for data in speakers:
 
         sentence = ' '.join(data['sentence'])
 
@@ -158,43 +158,15 @@ def master(gcs_uri):
 
         data['duration'] = data['end'] - data['start']
         data['sentiment'] = sentiment_enc
+
+        import copy
+        data_other = copy.deepcopy(data)
+        data_other['sentiment'] = 0
         speaker_sentiment[1].append(data)
-
-
-    for data in speakers[2]:
-
-        sentence = ' '.join(data['sentence'])
-
-        raw_data = analyze(sentence)
-
-        if isinstance(raw_data,type(None)):
-            sentiment = None
-            sentiment_enc = 5
-        else:
-            sentiment = float(raw_data)
-
-            if sentiment > 0.6:
-                sentiment_enc = 2
-            elif sentiment <=0.6 and sentiment > 0.2:
-                sentiment_enc = 1
-            elif sentiment <= 0.2 and sentiment > -0.2:
-                sentiment_enc = 0
-            elif sentiment <= -0.2 and sentiment > -0.6:
-                sentiment_enc = -1
-            elif sentiment <= -0.6:
-                sentiment_enc = 2
-            else:
-                sentiment_enc = 5
-
-        store = data['start'] 
-        if data['end'] < data['start']:
-            data['start'] = data['end']
-            data['end'] = store
-
-        data['duration'] = data['end'] - data['start']
-        data['sentiment'] = sentiment_enc
         speaker_sentiment[2].append(data)
-        
+
+
+    print(speaker_sentiment)
 
 
     print("Completed action!")

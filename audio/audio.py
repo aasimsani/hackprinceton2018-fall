@@ -61,7 +61,9 @@ def end_recording():
     """Stop recording audio from the client."""
     session['wavefile'].close()
     upload_blob(bucket_name,current_app.config['FILEDIR'] + session['wavename'],session['wavename'])
-    json_data = master("gs://hackpton-bucket/"+session['wavename'])
+#     json_data = master("gs://hackpton-bucket/"+session['wavename'])
+
+    json_data = {'total_duration': 20.0, 'segments': {1: [{'sentence': [], 'start': 0.0, 'end': 0.0, 'duration': 0.0, 'sentiment':5}], 2: [{'sentence': ['Pretty', 'as', 'well.', 'I', 'need', 'some', 'gas', 'money.'], 'start': 0.0, 'end': 20.0, 'duration': 20.0, 'sentiment': 2}]}}
 
     print(json_data)
 

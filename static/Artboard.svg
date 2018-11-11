@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2035px" height="982px" viewBox="0 0 2035 982" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(0.161183, 0.053697)">
+        <rect fill="#335264" x="0" y="0" width="2034" height="981"></rect>
+        <path d="M365.934824,606.598746 C411.172919,613.906079 442.839586,600.204829 460.934824,565.494994" id="Path-2" stroke="#F0F0F0" stroke-width="20" fill-rule="nonzero"></path>
+        <g id="Group-2" transform="translate(298.500000, 279.500000)">
+            <g id="Group">
+                <text id="ConVocal" font-family="Lato-Regular, Lato" font-size="350" font-weight="normal" line-spacing="68" fill="#18AF82">
+                    <tspan x="0" y="652.994994">ConVocal</tspan>
+                </text>
+                <rect id="Rectangle" fill="#335264" fill-rule="nonzero" x="604.5" y="0.12024371" width="220" height="421"></rect>
+            </g>
+        </g>
+        <path d="M275.5,412.529114 C362.866923,344.755004 444.866923,312.038576 521.5,314.37983 C636.449616,317.891712 665.003976,412.053196 720.5,426.124526 C775.996024,440.195855 897.5,370.81134 921.5,415.802083 C945.5,460.792827 988.5,590.478023 1015.5,646.672323 C1042.5,587.494994 1103.31994,443.389149 1131.31994,410.529114 C1165.31994,378.389149 1205.83685,351.481185 1282.5,355.191535 C1359.16315,358.901886 1332.44277,427.493492 1409.5,429.789133 C1486.55723,432.084774 1533.44884,372.176577 1595.5,364.516235 C1636.86744,359.40934 1691.20077,366.805386 1758.5,386.704371" id="Path-3" stroke="#F0F0F0" stroke-width="20" fill-rule="nonzero"></path>
+        <circle id="Oval" stroke="#979797" fill="#F0F0F0" fill-rule="nonzero" cx="415.434824" cy="517.285402" r="22"></circle>
+    </g>
+</svg>

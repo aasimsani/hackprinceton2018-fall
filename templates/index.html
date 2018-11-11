@@ -3,13 +3,33 @@
         <title>SocketIO Examples</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
-            p {
-                font-size: 150%;
-            }
+        body, html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+
+        .bg {
+            /* The image used */
+            background-image: url_for("/static/Artboard.png");
+
+            /* Full height */
+            height: 100vh; 
+            width: 100vw;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
         </style>
     </head>
     <body>
-        <h1>Socket.IO Examples</h1>
-        <p><a href="{{ url_for('audio.index') }}">Audio recording</a></p>
+    <div class="bg">
+        <img class="bg" src="/static/Artboard.png" />
+    </div>
+        <script>
+            setTimeout("location.href = '{{ url_for('audio.index') }}';",4000);
+        </script>
     </body>
 </html>

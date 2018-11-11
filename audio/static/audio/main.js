@@ -33,18 +33,66 @@ socketio.on('speech_data', function(json) {
 
     audio = document.createElement('p');
     console.log(JSON.stringify(json,null,2))
-    for (var key in json)
+
+    var totalDuration = json['total_duration']
+
+    var toRender = ""
+
+    for (var data in json['segments'][1])
     {
-        console.log(JSON.stringify(json[key],null,2))
+
+        var duration = json['segments'][1][data]["duration"]
+
+        var percent = duration/totalDuration
+
+        var toRender = ""
+
+        var sentiment = json['segments'][1][data]['sentiment']
+
+
+        var emotionScalar = "";
+        if (sentiment == -2) {
+            emotionScalar = "most-negative"
+        } else if (sentiment == -1) {
+            emotionScalar = "less-negative"
+        } else if (sentiment == 0) {
+            emotionScalar = "neutral"
+        } else if (sentiment == 1) {
+            emotionScalar = "less-positive"
+        } else if (sentiment == 2) {
+            emotionScalar = "most-negative"
+        }
+        else{
+            emotionScalar = "neutral"
+        }
+
+        console.log(emotionScalar)
+        
+        
+        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%" />';
+
+        tr = document.createElement('div')
+
+        tr.innerHTML = toRender;
+
+
+        document.getElementById('wavefiles').appendChild(tr);
+    
+    
     }
-    document.getElementById('wavefiles').appendChild(audio);
+
+
+
+  
+
+
 });
 
 socketio.on('add-wavefile', function(url) {
     // add new recording to page
     audio = document.createElement('p');
-    // audio.innerHTML = '<audio src="' + url + '" controls>';
-    // document.getElementById('wavefiles').appendChild(audio);
+    audio.innerHTML = '<audio src="' + url + '" controls>';
+    document.getElementById('wavefiles').appendChild(audio);
 });
 
 

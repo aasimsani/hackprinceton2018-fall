@@ -32,10 +32,10 @@ socketio.on('speech_data', function(json) {
     // add new recording to page
 
     audio = document.createElement('p');
-    console.log(json)
+    console.log(JSON.stringify(json,null,2))
     for (var key in json)
     {
-        console.log(key)
+        console.log(JSON.stringify(json[key],null,2))
     }
     document.getElementById('wavefiles').appendChild(audio);
 });

@@ -117,3 +117,8 @@ progress {
     color: #2ae064;
     background-color: #2ae064 
 }
+
+.progress-bar-empty{
+    color: #a8b2c1;
+    background-color: #a8b2c1 
+}

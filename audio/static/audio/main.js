@@ -58,10 +58,35 @@ socketio.on('speech_data', function(json) {
         } else {
             emotionScalar = "neutral";
         }
-
-        console.log(emotionScalar);
         
-        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%">\n a />';
+        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%">dummy text';
+        tr = document.createElement('div')
+        tr.innerHTML = toRender;
+        document.getElementById('wavefiles').appendChild(tr);
+    }
+
+    for (var data in json['segments'][2]) {
+        var duration = json['segments'][1][data]["duration"];
+        var percent = (duration / totalDuration) * 100;
+        var toRender = "";
+        var sentiment = json['segments'][1][data]['sentiment'];
+        var emotionScalar = "";
+
+        if (sentiment == -2) {
+            emotionScalar = "most-negative";
+        } else if (sentiment == -1) {
+            emotionScalar = "less-negative";
+        } else if (sentiment == 0) {
+            emotionScalar = "neutral";
+        } else if (sentiment == 1) {
+            emotionScalar = "less-positive";
+        } else if (sentiment == 2) {
+            emotionScalar = "most-negative";
+        } else {
+            emotionScalar = "neutral";
+        }
+        
+        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%">\n dummy text';
         tr = document.createElement('div')
         tr.innerHTML = toRender;
         document.getElementById('wavefiles').appendChild(tr);

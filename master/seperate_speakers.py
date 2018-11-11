@@ -160,7 +160,7 @@ def master(gcs_uri):
 
         import copy
         data_other = copy.deepcopy(data)
-        data_other['sentiment'] = 5
+        data_other['sentiment'] = 0
         speaker_sentiment[data['speaker']].append(data)
 
         if data['speaker'] == 1:

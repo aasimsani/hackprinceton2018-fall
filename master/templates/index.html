@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>SocketIO Examples</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body, html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+
+        .bg {
+            /* The image used */
+            background-image: url_for("/static/Artboard.png");
+
+            /* Full height */
+            height: 100vh; 
+            width: 100vw;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        </style>
+    </head>
+    <body>
+    <div class="bg">
+        <img class="bg" src="/static/Artboard.png" />
+    </div>
+        <script>
+            setTimeout("location.href = '{{ url_for('audio.index') }}';",2000);
+        </script>
+    </body>
+</html>

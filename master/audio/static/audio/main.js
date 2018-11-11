@@ -62,7 +62,7 @@ socketio.on('speech_data', function(json) {
         } else if (sentiment == 2) {
             emotionScalar = "most-positive";
         } else {
-            emotionScalar = "neutral";
+            emotionScalar = "empty";
         }
         
         toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%">';
@@ -96,7 +96,7 @@ socketio.on('speech_data', function(json) {
         } else if (sentiment == 2) {
             emotionScalar = "most-positive";
         } else {
-            emotionScalar = "neutral";
+            emotionScalar = "empty";
         }
         
         toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%">';

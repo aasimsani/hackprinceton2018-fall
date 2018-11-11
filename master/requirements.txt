@@ -13,4 +13,4 @@ six==1.11.0
 Werkzeug==0.12.2
 google-api-python-client
 google-cloud
-google-cloud-languaget
+google-cloud-language

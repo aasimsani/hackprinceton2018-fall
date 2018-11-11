@@ -140,6 +140,13 @@ progress {
     box-shadow: 0px 5px 5px #282828;
 }
 
+.progress-bar-empty {
+    color: #a8b2c1;
+    background-color: #a8b2c1;
+    border-radius: 25px;
+    box-shadow: 0px 5px 5px #282828;
+}
+
 .center-this {
     margin: auto;
     width: 50%;

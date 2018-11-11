@@ -61,7 +61,7 @@ socketio.on('speech_data', function(json) {
 
         console.log(emotionScalar);
         
-        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%"';
+        toRender = '<div class="progress-bar progress-bar-' + emotionScalar + '" role="progressbar" style="width:' + percent + '%"\n a';
         tr = document.createElement('div')
         tr.innerHTML = toRender;
         document.getElementById('wavefiles').appendChild(tr);
@@ -71,7 +71,7 @@ socketio.on('speech_data', function(json) {
 socketio.on('add-wavefile', function(url) {
     // add new recording to page
     audio = document.createElement('p');
-    audio.innerHTML = '<audio src="' + url + '" controls>';
+    // audio.innerHTML = '<audio src="' + url + '" controls>';
     document.getElementById('wavefiles').appendChild(audio);
 });
 
